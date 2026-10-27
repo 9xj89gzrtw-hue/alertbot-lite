@@ -1,0 +1,35 @@
+{
+  "source": {
+    "type": "dexscreener_search",
+    "query": "SOL"
+  },
+  "store": {
+    "path": "alertbot.sqlite",
+    "ttl_days": 30
+  },
+  "notify": {
+    "telegram": {
+      "token_env": "TELEGRAM_BOT_TOKEN",
+      "chat_id_env": "TELEGRAM_CHAT_ID"
+    }
+  },
+  "rules": [
+    {
+      "name": "liquid-solana-pairs",
+      "enabled": true,
+      "chains": ["solana"],
+      "deny_keywords": ["test", "scam"],
+      "min_liquidity_usd": 50000,
+      "min_volume_24h_usd": 10000,
+      "min_score": 60,
+      "weights": {"liquidity": 20, "volume": 15, "keyword": 10, "freshness": 10}
+    },
+    {
+      "name": "any-base-pair-with-depth",
+      "enabled": true,
+      "chains": ["base"],
+      "min_liquidity_usd": 100000,
+      "min_score": 65
+    }
+  ]
+}

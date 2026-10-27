@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+alertbot.sqlite
+config.json
